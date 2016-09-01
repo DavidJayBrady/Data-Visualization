@@ -1,0 +1,27 @@
+<html>
+<!-- This file needs to be inside the templates folder just because that's what flask looks for. -->
+<head>
+    <meta charset="UTF-8">
+    <title>Data Visualization</title>
+<body>
+    <h1>
+        Visualize
+    </h1>
+    <!-- /my-link/ will go to the python function that has the "@app.route("/my-link/) decorator"
+           by naming all the radio buttons the same, only 1 can be selected at a time,
+           the value will be found by Python code, and used to choose which plot,
+           -->
+    <form action="/my-link/" method="POST">
+        <input type="radio" name="graph" value="barplot"/> Barplot <br>
+        <input type="radio" name="graph" value="comparative_barplot"/> Comparative bar plot <br>
+        <input type="radio" name="graph" value="heatmap_visits"/> Heatmap <br>
+        <input type="radio" name="graph" value="regplot_duration"/> Joint Duration <br>
+        <p>Enter any constraints you have here</p>
+        <input type="text" name="constraints"/>  <br>
+        <input type="submit" name="submit" value="Graph">
+    </form>
+    <!-- Dynamically find the path to the png file. Should be able to move the folder and have it still work this way.
+         url_for is a flask method. See docs for further info-->
+    <img src="{{url_for('static', filename='static/output.png') }}" />
+</body>
+</html>
